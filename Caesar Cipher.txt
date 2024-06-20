@@ -1,0 +1,42 @@
+def encrypt(text, shift):
+    Encrypted = []
+    for char in text:
+        if char.isalpha():
+            ShiftBase = ord('A') if char.isupper() else ord('a')
+            EncryptedChar = chr((ord(char) - ShiftBase + shift) % 26 + ShiftBase)
+            Encrypted.append(EncryptedChar)
+        else:
+            Encrypted.append(char)
+    return ''.join(Encrypted)
+
+def decrypt(text, shift):
+    Decrypted = []
+    for char in text:
+        if char.isalpha():
+            ShiftBase = ord('A') if char.isupper() else ord('a')
+            DecryptedChar = chr((ord(char) - ShiftBase - shift) % 26 + ShiftBase)
+            Decrypted.append(DecryptedChar)
+        else:
+            Decrypted.append(char)
+    return ''.join(Decrypted)
+
+
+# Get input from the user
+text = input("Enter the text to be operated on : ")
+shift = int(input("Enter the shift value: "))
+
+
+# Get mode of operation:
+print('Select the MODE of Operation (Encryption/Decryption): ')
+Usr_input=input('e/d: ').lower()
+
+if Usr_input == 'e' :
+    # Encrypt the plaintext
+    EncryptedText = encrypt(text, shift)
+    print(f"Encrypted text: {EncryptedText}")
+
+elif Usr_input == 'd' :
+    # Decrypt the text
+    DecryptedText = decrypt(text, shift)
+    print(f"Decrypted text: {DecryptedText}")
+
